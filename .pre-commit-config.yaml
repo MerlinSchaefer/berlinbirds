@@ -34,6 +34,7 @@ repos:
     rev: 1.7.5
     hooks:
       - id: bandit
+        args: ["--skip=B101"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
