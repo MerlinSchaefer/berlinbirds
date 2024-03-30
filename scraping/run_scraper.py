@@ -37,4 +37,4 @@ if __name__ == "__main__":
         # Save data as parquet
         data_df = pd.DataFrame(data)
         now = datetime.now().strftime("%Y-%m-%d_%H-%M")
-        data_df.to_parquet(path=f"./scraping_data/{now}_past_7_day_data.parquet")
+        data_df.to_parquet(path=f"scraping/scraping_data/{now}_past_7_day_data.parquet")
