@@ -1,0 +1,27 @@
+name: Run Scraping Every 5 Days
+
+on:
+  schedule:
+    # Runs at 17:00 UTC every 5 days
+    - cron: "0 17 */5 * *"
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+          # Using Python version 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install
+
+      - name: Run the script
+        run: pipenv run python3 scraping/run_scraper.py

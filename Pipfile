@@ -9,6 +9,7 @@ xlml = "*"
 jupyter = "*"
 ipykernel = "*"
 geopandas = "*"
+pyarrow = "*"
 
 [dev-packages]
 
