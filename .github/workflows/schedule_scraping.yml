@@ -9,7 +9,6 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
-    environment: secrets
     steps:
       - uses: actions/checkout@v2
         # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
