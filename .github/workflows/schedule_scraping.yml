@@ -5,10 +5,11 @@ on:
     # Runs at 17:00 UTC every 5 days
     - cron: "0 17 */5 * *"
   workflow_dispatch:
-  
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    environment: secrets
     steps:
       - uses: actions/checkout@v2
         # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
