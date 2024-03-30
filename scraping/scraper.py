@@ -95,7 +95,7 @@ def scrape_bird_data(
             print("Failed to retrieve webpage")
             break
 
-        wait_secs = random.randint(1, 5)  # nosec
+        wait_secs = random.randint(1, 13)  # nosec
         print(f"Waiting for {wait_secs} seconds.")
         time.sleep(wait_secs)
 

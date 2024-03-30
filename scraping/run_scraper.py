@@ -30,4 +30,4 @@ if __name__ == "__main__":
     # Current time formatted in a way that is safe for filenames
     now = datetime.now().strftime("%Y-%m-%d_%H-%M")
     # TODO: create logic to save at correct place
-    data_df.to_parquet(path=f"./{now}_past_7_day_data.parquet")
+    data_df.to_parquet(path=f"./data/{now}_past_7_day_data.parquet")
