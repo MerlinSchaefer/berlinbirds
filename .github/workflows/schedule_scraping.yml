@@ -5,13 +5,14 @@ on:
     # Runs at 17:00 UTC every 5 days
     - cron: "0 17 */5 * *"
   workflow_dispatch:
-  
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+        with:
+          persist-credentials: false
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v2
@@ -26,3 +27,18 @@ jobs:
 
       - name: Run the script
         run: pipenv run python3 scraping/run_scraper.py
+        env: # Pass the repo secrets to the script as environment variables
+          START_URL_2DAYS: ${{ secrets.START_URL_2DAYS }}
+          START_URL_7DAYS: ${{ secrets.START_URL_7DAYS }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Commit and Push Changes
+        run: |
+          git add .  # Adds all changes, including new files
+          git commit -m "Auto-update data files" -a  # Commits the changes
+          # Only proceed if something was actually committed
+          git diff --quiet && git diff --staged --quiet || git push
