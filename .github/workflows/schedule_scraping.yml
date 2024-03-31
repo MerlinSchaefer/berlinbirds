@@ -40,5 +40,4 @@ jobs:
         run: |
           git add .  # Adds all changes, including new files
           git commit -m "Auto-update data files" -a  # Commits the changes
-          # Only proceed if something was actually committed
-          git diff --quiet && git diff --staged --quiet || git push
+          git push
