@@ -33,10 +33,14 @@ jobs:
       #     START_URL_7DAYS: ${{ secrets.START_URL_7DAYS }}
       - name: Create test file
         run: date +%s > test.txt
+
       - name: Commit and Push Changes
-        run: |
-          git config --global user.email "MerlinSchaefer@users.noreply.github.com"
-          git config --global user.name "Merlin Schaefer"
-          git add .
-          git commit -m "Auto-update data files"
-          git push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Auto-update data files
+        # run: |
+        #   git config --global user.email "MerlinSchaefer@users.noreply.github.com"
+        #   git config --global user.name "Merlin Schaefer"
+        #   git add .
+        #   git commit -m "Auto-update data files"
+        #   git push
