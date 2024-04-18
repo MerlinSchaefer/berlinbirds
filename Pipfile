@@ -10,6 +10,7 @@ jupyter = "*"
 ipykernel = "*"
 geopandas = "*"
 pyarrow = "*"
+azure-storage-blob = "*"
 
 [dev-packages]
 
