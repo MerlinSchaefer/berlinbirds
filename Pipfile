@@ -11,9 +11,10 @@ ipykernel = "*"
 geopandas = "*"
 pyarrow = "*"
 azure-storage-blob = "*"
+python-dotenv = "*"
+azure-identity = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
-
