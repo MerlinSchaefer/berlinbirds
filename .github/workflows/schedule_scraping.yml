@@ -12,24 +12,21 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Python 3.11
         uses: actions/setup-python@v2
         with:
           python-version: "3.11.7"
-          # Using Python version 3.11
-
       - name: Install dependencies
         run: |
           pip install pipenv
           pipenv install
-
       - name: Run the script
         run: pipenv run python3 scraping/run_scraper.py
-        env: # Pass the repo secrets to the script as environment variables
+        env:
           START_URL_2DAYS: ${{ secrets.START_URL_2DAYS }}
           START_URL_7DAYS: ${{ secrets.START_URL_7DAYS }}
-
+          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          AZURE_CONTAINER_NAME: ${{ secrets.AZURE_CONTAINER_NAME }}
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
