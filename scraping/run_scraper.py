@@ -5,15 +5,14 @@ from datetime import datetime
 import pandas as pd
 import dotenv
 from scraper import scrape_bird_data
-from storage import BlobStorageHandler  # Assuming the class is in blob_storage_handler.py
+
 
 if __name__ == "__main__":
     dotenv.load_dotenv(override=True)
-    # Read URLs and Azure Storage credentials from environment variables
+
     start_url_2days = os.getenv("START_URL_2DAYS")
     start_url_7days = os.getenv("START_URL_7DAYS")
-    storage_connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
-    container_name = os.getenv("AZURE_CONTAINER_NAME")
+
 
     # Load URLs from JSON file if environment variables are not set
     if not start_url_2days or not start_url_7days:
@@ -45,6 +44,3 @@ if __name__ == "__main__":
         filepath = f"scraping/scraping_data/{filename}"
         data_df.to_parquet(path=filepath)
 
-        # Initialize BlobStorageHandler and upload the file
-        blob_handler = BlobStorageHandler(container_name=container_name, connection_string=storage_connection_string)
-        blob_handler.upload_blob(filename=filename, file_path=filepath)
